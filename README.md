@@ -5,12 +5,15 @@ A 6 button macropad with a display for button labels and a mouse knob with hapti
 
 [Project Video Link](https://youtu.be/bNUKRJQjuvQ)
 
+![Haptic Pad v2.0](Pictures/IMG_1243.jpg "Haptic Pad v2.0 Powered On")
+
 #### 🆕 New Advanced Features (v2.0)
 
 *   **USB Drive Mode**: Edit your SD card files directly from your PC! Hold **Button 5 (Center Bottom)** while plugging in the USB cable to mount the internal SD card as a flash drive. 
 *   **Reboot Shortcut**: While in USB Drive Mode, simply press **Button 1 (Top Left)** to exit and reboot the pad back into normal mode.
 *   **Smart Sleep Mode**: To preserve the OLED display and save power, the pad automatically enters sleep mode after 5 minutes of inactivity. Press any button to wake it up.
 *   **Per-Profile LEDs**: LED colors and modes are now tied to your active profile. Your pad can now automatically change its "look" whenever you switch between apps or games.
+*   **Enhanced UI Layout**: The screen layout has been redesigned for better legibility. The profile name has been moved from the center to the edge of the screen, freeing up space for **larger 24x24 pixel icons** (upgraded from 16x16). 
 *   **Diagnostic Tools**: Includes a `HardwareTester.uf2` file to quickly verify your wiring and motor directions before loading the main firmware.
 *   **Custom Icon Support**: New Python scripts provided in the repository allow you to convert your own images into the exact bitmap format required for the OLED display. (**Note**: These scripts are intended as examples for icon creation and are not full-featured tools).
 
@@ -27,7 +30,9 @@ The 3D files in this repository have been updated with several quality-of-life i
 #### 💡 Technical Notes & Troubleshooting
 
 *   **Display Stability**: It is highly recommended to install the **10nF capacitor** (C1) on the controller board. This was optional in earlier versions but has been found necessary to reduce noise and prevent display flickering.
+    ![Capacitor C1 Location](Pictures/IMG_1246.jpg "Capacitor C1 on RP2040-Plus")
 *   **Voltage Logic Fix**: While the OLED display is rated for 5V, it can behave erratically when receiving 3.3V logic signals from the Pico. To fix this, **add a diode inline** with the 5V power supply to the display. This drops the voltage to ~4V, allowing the 3.3V logic signals to communicate reliably with the display.
+    ![Inline Diode Fix](Pictures/IMG_1245.jpg "Inline Diode for Voltage Drop")
 *   **Hardware Tester Bug**: When running the knob test in `HardwareTester.uf2`, the mode names displayed on the screen (Clicky, Twist, Momentum) may not match the actual haptic mode being tested. As long as you feel three distinct haptic behaviors as you cycle through, your motor and encoder are working correctly.
 
 #### Bill of Materials
@@ -88,7 +93,12 @@ Each action has two values: the delay (in ms) followed by the keycode. Setting b
 
 ### Hardware Assembly & PCB's
 
+![Exploded Motor Assembly](MotorStack.png "Motor Stack Assembly Diagram")
+
 *(See the original repository for detailed wiring diagrams and PCB assembly guides)*
+
+![Assembled Internal Wiring](Pictures/IMG_1244.jpg "Internal Wiring View")
+![Assembled Top View](Pictures/IMG_1105.jpg "Haptic Pad Assembled (Top)")
 
 You will need to have both PCB's made to complete this project. Zip files for manufacturing can be found in `PCB's/MacroPad` and `PCB's/MacroPad Controller Board`.
 
@@ -97,3 +107,6 @@ You will need to have both PCB's made to complete this project. Zip files for ma
 **Main Board**: If including LEDs, install them first! Match the arrow rebate to the "1" pad. All "C" components are 0.1uF 0603 capacitors.
 
 **Connecting**: Boards are connected via direct wiring. Match the labels on both boards. The three motor wires connect to U, V, and W (order can be swapped if direction is wrong). Encoder connections are also labelled—only the four main pins are required.
+
+> [!TIP]
+> **Screw Installation Hack**: The original design calls for tapping the plastic for M2 screws. If you don't have an M2 tap, you can simply use a hot soldering iron to carefully press the screws into the pre-sized holes in the plastic. This melts the plastic slightly around the threads, creating a very secure hold once cooled.
