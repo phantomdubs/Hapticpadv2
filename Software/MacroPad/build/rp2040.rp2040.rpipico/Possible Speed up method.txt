@@ -1,0 +1,11 @@
+Can we speed it up?
+
+Yes, we can try to raise the "speed limit" on that dirt road.
+
+Right now, in your boot bouncer, we are running the SPI clock at 16 MHz:
+if (SD.begin(_CS, SD_SCK_MHZ(16))) {
+
+You can safely try bumping this to 25 MHz or even 50 MHz:
+if (SD.begin(_CS, SD_SCK_MHZ(25))) {
+
+(Note: If you push it to 50 and the drive stops mounting or asks to be formatted, your jumper wires are too long for that frequency, and you should drop it back down to 25 or 16).
