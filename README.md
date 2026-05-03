@@ -12,7 +12,7 @@ A 6 button macropad with a display for button labels and a mouse knob with hapti
 *   **Smart Sleep Mode**: To preserve the OLED display and save power, the pad automatically enters sleep mode after 5 minutes of inactivity. Press any button to wake it up.
 *   **Per-Profile LEDs**: LED colors and modes are now tied to your active profile. Your pad can now automatically change its "look" whenever you switch between apps or games.
 *   **Diagnostic Tools**: Includes a `HardwareTester.uf2` file to quickly verify your wiring and motor directions before loading the main firmware.
-*   **Custom Icon Support**: New Python scripts provided in the repository allow you to convert your own images into the exact bitmap format required for the OLED display.
+*   **Custom Icon Support**: New Python scripts provided in the repository allow you to convert your own images into the exact bitmap format required for the OLED display. (**Note**: These scripts are intended as examples for icon creation and are not full-featured tools).
 
 #### 🛠️ Design Improvements (v2.0)
 
@@ -23,6 +23,12 @@ The 3D files in this repository have been updated with several quality-of-life i
 
 > [!IMPORTANT]
 > **Assembly Note**: If you are using standard Choc keycaps, the **bottom-center keycap** must be trimmed down on its underside. This is necessary to prevent it from interfering with or damaging the LCD screen's ribbon cable during use.
+
+#### 💡 Technical Notes & Troubleshooting
+
+*   **Display Stability**: It is highly recommended to install the **10nF capacitor** (C1) on the controller board. This was optional in earlier versions but has been found necessary to reduce noise and prevent display flickering.
+*   **Voltage Logic Fix**: While the OLED display is rated for 5V, it can behave erratically when receiving 3.3V logic signals from the Pico. To fix this, **add a diode inline** with the 5V power supply to the display. This drops the voltage to ~4V, allowing the 3.3V logic signals to communicate reliably with the display.
+*   **Hardware Tester Bug**: When running the knob test in `HardwareTester.uf2`, the mode names displayed on the screen (Clicky, Twist, Momentum) may not match the actual haptic mode being tested. As long as you feel three distinct haptic behaviors as you cycle through, your motor and encoder are working correctly.
 
 #### Bill of Materials
 
