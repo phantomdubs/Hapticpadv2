@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Settings>
+
+    <Clicky_P>0.5</Clicky_P>
+    <Clicky_I>0</Clicky_I>
+    <Twist_P>0.65</Twist_P>
+    <Twist_I>0.2</Twist_I>
+    <Momentum_P>0.3</Momentum_P>
+    <Momentum_I>0.9</Momentum_I>
+  </Settings>
+  <Profiles>
+    <Profile name="StarNavC">
+      <LED_Mode>Breath</LED_Mode>
+      <LED_Primary>0,255,255</LED_Primary>
+      <LED_Secondary>255,0,255</LED_Secondary>
+      <LED_Brightness>100</LED_Brightness>
+      <WheelMode>Clicky</WheelMode>
+      <WheelKey>0</WheelKey>
+      <MacroButtons>
+        <MacroButton><Action>0,87</Action><Action>0,0</Action><Action>0,0</Action><Label>Warp</Label></MacroButton>
+        <MacroButton><Action>0,77</Action><Action>0,0</Action><Action>0,0</Action><Label>Map</Label></MacroButton>
+        <MacroButton><Action>0,83</Action><Action>0,0</Action><Action>0,0</Action><Label>Scan</Label></MacroButton>
+        <MacroButton><Action>0,67</Action><Action>0,0</Action><Action>0,0</Action><Label>Comms</Label></MacroButton>
+        <MacroButton><Action>0,75</Action><Action>0,0</Action><Action>0,0</Action><Label>Shields</Label></MacroButton>
+        <MacroButton><Action>0,70</Action><Action>0,0</Action><Action>0,0</Action><Label>Fire</Label></MacroButton>
+      </MacroButtons>
+    </Profile>
+    <Profile name="Mech-T">
+      <LED_Mode>bands</LED_Mode>
+      <LED_Primary>0,145,145</LED_Primary>
+      <LED_Secondary>023,0,023</LED_Secondary>
+      <LED_Brightness>50</LED_Brightness>
+      <WheelMode>Twist</WheelMode>
+      <WheelKey>0</WheelKey>
+      <MacroButtons>
+        <MacroButton><Action>0,49</Action><Action>0,0</Action><Action>0,0</Action><Label>Leg-L</Label></MacroButton>
+        <MacroButton><Action>0,50</Action><Action>0,0</Action><Action>0,0</Action><Label>Torso</Label></MacroButton>
+        <MacroButton><Action>0,51</Action><Action>0,0</Action><Action>0,0</Action><Label>Leg-R</Label></MacroButton>
+        <MacroButton><Action>0,81</Action><Action>0,0</Action><Action>0,0</Action><Label>Missile</Label></MacroButton>
+        <MacroButton><Action>0,69</Action><Action>0,0</Action><Action>0,0</Action><Label>Laser</Label></MacroButton>
+        <MacroButton><Action>0,27</Action><Action>0,0</Action><Action>0,0</Action><Label>Eject</Label></MacroButton>
+      </MacroButtons>
+    </Profile>
+    <Profile name="CybMix-M">
+      <LED_Mode>halo</LED_Mode>
+      <LED_Primary>0,76,76</LED_Primary>
+      <LED_Secondary>176,0,176</LED_Secondary>
+      <LED_Brightness>100</LED_Brightness>
+      <WheelMode>Momentum</WheelMode>
+      <WheelKey>0</WheelKey>
+      <MacroButtons>
+        <MacroButton><Action>0,76</Action><Action>0,0</Action><Action>0,0</Action><Label>Loop</Label></MacroButton>
+        <MacroButton><Action>0,70</Action><Action>0,0</Action><Action>0,0</Action><Label>Filter</Label></MacroButton>
+        <MacroButton><Action>0,68</Action><Action>0,0</Action><Action>0,0</Action><Label>Drop</Label></MacroButton>
+        <MacroButton><Action>0,66</Action><Action>0,0</Action><Action>0,0</Action><Label>Bass</Label></MacroButton>
+        <MacroButton><Action>0,77</Action><Action>0,0</Action><Action>0,0</Action><Label>Mid</Label></MacroButton>
+        <MacroButton><Action>0,72</Action><Action>0,0</Action><Action>0,0</Action><Label>High</Label></MacroButton>
+      </MacroButtons>
+    </Profile>
+    <Profile name="Alch-C">
+      <LED_Mode>rainbow</LED_Mode>
+      <LED_Primary>0,34,34</LED_Primary>
+      <LED_Secondary>150,0,150</LED_Secondary>
+      <LED_Brightness>50</LED_Brightness>
+      <WheelMode>Clicky</WheelMode>
+      <WheelKey>0</WheelKey>
+      <MacroButtons>
+        <MacroButton><Action>0,70</Action><Action>0,0</Action><Action>0,0</Action><Label>Heat</Label></MacroButton>
+        <MacroButton><Action>0,87</Action><Action>0,0</Action><Action>0,0</Action><Label>Cool</Label></MacroButton>
+        <MacroButton><Action>0,73</Action><Action>0,0</Action><Action>0,0</Action><Label>Add</Label></MacroButton>
+        <MacroButton><Action>0,83</Action><Action>0,0</Action><Action>0,0</Action><Label>Stir</Label></MacroButton>
+        <MacroButton><Action>0,80</Action><Action>0,0</Action><Action>0,0</Action><Label>Pour</Label></MacroButton>
+        <MacroButton><Action>0,68</Action><Action>0,0</Action><Action>0,0</Action><Label>Done</Label></MacroButton>
+      </MacroButtons>
+    </Profile>
+    <Profile name="Hack-T">
+      <LED_Mode>solid</LED_Mode>
+      <LED_Primary>0,090,090</LED_Primary>
+      <LED_Secondary>190,0,190</LED_Secondary>
+      <LED_Brightness>100</LED_Brightness>
+      <WheelMode>Twist</WheelMode>
+      <WheelKey>17</WheelKey>
+      <MacroButtons>
+        <MacroButton><Action>0,66</Action><Action>0,0</Action><Action>0,0</Action><Label>Bypass</Label></MacroButton>
+        <MacroButton><Action>0,73</Action><Action>0,0</Action><Action>0,0</Action><Label>Inject</Label></MacroButton>
+        <MacroButton><Action>0,68</Action><Action>0,0</Action><Action>0,0</Action><Label>Crack</Label></MacroButton>
+        <MacroButton><Action>0,71</Action><Action>0,0</Action><Action>0,0</Action><Label>Ghost</Label></MacroButton>
+        <MacroButton><Action>0,84</Action><Action>0,0</Action><Action>0,0</Action><Label>Trace</Label></MacroButton>
+        <MacroButton><Action>0,78</Action><Action>0,0</Action><Action>0,0</Action><Label>Nuke</Label></MacroButton>
+      </MacroButtons>
+    </Profile>
+    <Profile name="Race-M">
+      <LED_Mode>off</LED_Mode>
+      <LED_Primary>0,111,222</LED_Primary>
+      <LED_Secondary>222,0,223</LED_Secondary>
+      <LED_Brightness>100</LED_Brightness>
+      <WheelMode>Momentum</WheelMode>
+      <WheelKey>0</WheelKey>
+      <MacroButtons>
+        <MacroButton><Action>0,78</Action><Action>0,0</Action><Action>0,0</Action><Label>Nitro</Label></MacroButton>
+        <MacroButton><Action>0,66</Action><Action>0,0</Action><Action>0,0</Action><Label>Brake</Label></MacroButton>
+        <MacroButton><Action>0,68</Action><Action>0,0</Action><Action>0,0</Action><Label>Drift</Label></MacroButton>
+        <MacroButton><Action>0,67</Action><Action>0,0</Action><Action>0,0</Action><Label>Cam</Label></MacroButton>
+        <MacroButton><Action>0,76</Action><Action>0,0</Action><Action>0,0</Action><Label>Lights</Label></MacroButton>
+        <MacroButton><Action>0,82</Action><Action>0,0</Action><Action>0,0</Action><Label>Reset</Label></MacroButton>
+      </MacroButtons>
+    </Profile>
+  </Profiles>
+</Configuration>
