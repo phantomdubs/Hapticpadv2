@@ -1,11 +1,20 @@
+// Animation speed controls - adjust these values to change animation speeds
+unsigned long bandSpeed = 200; // Higher number = slower alternation. 200 means it toggles colors every 200ms.
+unsigned long breathSpeed = 15; // Higher number = slower breathing. 15 means it updates the brightness every 15ms.
+unsigned long haloSpeed = 80; // Higher number = slower animation. 40 means it moves 1 pixel every 40ms.
+unsigned long lastBandTime = 0;
+unsigned long lastBreathTime = 0;
+unsigned long lastHaloTime = 0;
+
 void ledBand(){
-  if(loopCounter == 20){
+  if (millis() - lastBandTime >= bandSpeed) {
+    lastBandTime = millis(); // Reset the timer
+    
     if(evenNumber){
       evenNumber = false;
     } else {
       evenNumber = true;
     }
-    loopCounter = 0;
   }
 
   for(int i = 0; i < NUM_LEDS; i++){
@@ -37,19 +46,24 @@ void ledBand(){
 }
 
 void breathLED(){
-  if(breathIncrease){
-    if(sequenceStep < 100){
-      sequenceStep++;
+  if (millis() - lastBreathTime >= breathSpeed) {
+    lastBreathTime = millis(); // Reset the timer
+    
+    if(breathIncrease){
+      if(sequenceStep < 100){
+        sequenceStep++;
+      } else {
+        breathIncrease = false;
+      }
     } else {
-      breathIncrease = false;
-    }
-  } else {
-    if(sequenceStep > 0){
-      sequenceStep--;
-    } else {
-      breathIncrease = true;
+      if(sequenceStep > 0){
+        sequenceStep--;
+      } else {
+        breathIncrease = true;
+      }
     }
   }
+
   for(int i = 0; i < NUM_LEDS; i++){
     leds[i].red = primaryColour[0] - (redScale * sequenceStep);
     leds[i].green = primaryColour[1] - (greenScale * sequenceStep);
@@ -62,6 +76,7 @@ void breathLED(){
 }
 
 void haloLED(){
+  
   for(int i = 0; i < NUM_LEDS; i++){
     if(i == haloCount){
       sequenceStep = 0;
@@ -71,11 +86,15 @@ void haloLED(){
     leds[i].blue = primaryColour[2] - (blueScale * sequenceStep);
     sequenceStep++;
   }
-
-  if(haloCount < NUM_LEDS){
-    haloCount++;
-  } else {
-    haloCount = 0;
+  // Only advance the frame position when the speed time has passed
+  if (millis() - lastHaloTime >= haloSpeed) {
+    lastHaloTime = millis(); // Reset the timer
+    
+    if(haloCount < NUM_LEDS - 1){ // Use NUM_LEDS - 1 to prevent out-of-bounds math
+      haloCount++; 
+    } else {
+      haloCount = 0;
+    }
   }
 
   FastLED.setBrightness(ledBrightness);
