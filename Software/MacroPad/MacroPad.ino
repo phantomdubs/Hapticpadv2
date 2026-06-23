@@ -172,6 +172,24 @@ uint8_t const desc_mouse_report[] =
 Adafruit_USBD_HID usb_keyboard(desc_keyboard_report, sizeof(desc_keyboard_report), HID_ITF_PROTOCOL_KEYBOARD, 2, false);
 Adafruit_USBD_HID usb_mouse(desc_mouse_report, sizeof(desc_mouse_report), HID_ITF_PROTOCOL_MOUSE, 2, false);
 
+// USB HID Modifier Constants
+#define MODIFIER_LEFT_CTRL   0x01
+#define MODIFIER_LEFT_SHIFT  0x02
+#define MODIFIER_LEFT_ALT    0x04
+#define MODIFIER_LEFT_GUI    0x08
+#define MODIFIER_RIGHT_CTRL  0x10
+#define MODIFIER_RIGHT_SHIFT 0x20
+#define MODIFIER_RIGHT_ALT   0x40
+#define MODIFIER_RIGHT_GUI   0x80
+
+// Function to combine multiple modifiers
+int combineModifiers(int modifiers[], int count) {
+  int result = 0;
+  for (int i = 0; i < count; i++) {
+    result |= modifiers[i];
+  }
+  return result;
+}
 
 // --- USB FLASH DRIVE LOGIC ---
 Adafruit_USBD_MSC usb_msc;
@@ -510,16 +528,27 @@ rp2040.reboot(); // The correct RP2040-specific restart command!
 void macroOutput(int button){
   uint8_t keycode[6] = { 0 };
   int modifier = 0;
+  int modifierArray[6] = {0}; 
+  int modifierCount = 0;
         
   for(int i = 0; i < 3; i++){
     delay(macroDelay[button][i]);
     if(macroAction[button][i] != 0){
       keycode[0] = convertKeycode(macroAction[button][i]);
-      if(checkModifiers(macroAction[button][i]) != 0){
-        modifier = checkModifiers(macroAction[button][i]);
-        Serial.println("Modifier Detected");
+      int mod = checkModifiers(macroAction[button][i]);
+      if(mod != 0){
+        modifierArray[modifierCount] = mod;
+        modifierCount++;
       } else {
+        // For non-modifier keys, combine accumulated modifiers and send
+        if(modifierCount > 0){
+          modifier = combineModifiers(modifierArray, modifierCount);
+        }
         usb_keyboard.keyboardReport(0, modifier, keycode);
+        Serial.println(modifier);
+        // Reset for next key
+        modifierCount = 0;
+        modifier = 0;
       }
     }
   }
